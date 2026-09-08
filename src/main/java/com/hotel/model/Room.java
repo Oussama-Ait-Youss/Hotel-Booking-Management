@@ -1,4 +1,5 @@
 package com.hotel.model;
+import java.math.BigDecimal;
 
 
 public class Room {
