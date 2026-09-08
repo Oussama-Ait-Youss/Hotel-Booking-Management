@@ -1,4 +1,7 @@
 package com.hotel.model;
+import java.util.UUID;
+import java.time.LocalDate;
+import java.math.BigDecimal;
 
 
 public class Reservation {
@@ -6,7 +9,7 @@ public class Reservation {
     private String reservationCode;
     private UUID userId;
     private int roomNumber;
-    private Localdate checkIn;
+    private LocalDate checkIn;
     private LocalDate checkOut;
     private int numberOfGuests;
     private int numberOfNights;
@@ -48,7 +51,7 @@ public class Reservation {
         return roomNumber;
     }
 
-    public Localdate getCheckIn() {
+    public LocalDate getCheckIn() {
         return checkIn;
     }
 
@@ -93,7 +96,7 @@ public class Reservation {
         this.roomNumber = roomNumber;
     }
 
-    public void setCheckIn(Localdate checkIn) {
+    public void setCheckIn(LocalDate checkIn) {
         this.checkIn = checkIn;
     }
 

@@ -1,7 +1,8 @@
 package com.hotel.model;
+import java.util.UUID;
 
 public class User {
-    private String UUID;
+    private UUID UUID;
     private String fullName;
     private String email;
     private String phone;
@@ -9,7 +10,7 @@ public class User {
 
 
     // create the constructor
-    public User(String UUID,String fullName,String email,String phone,String password){
+    public User(UUID UUID,String fullName,String email,String phone,String password){
         this.UUID = UUID;
         this.fullName = fullName;
         this.email = email;
@@ -34,13 +35,13 @@ public class User {
         return fullName;
     }
 
-    public String getUUID() {
+    public UUID getUUID() {
         return UUID;
     }
 
     //create the setter
 
-    public void setUUID(String UUID) {
+    public void setUUID(UUID UUID) {
         this.UUID = UUID;
     }
 
