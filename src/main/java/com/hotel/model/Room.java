@@ -3,7 +3,7 @@ import java.math.BigDecimal;
 
 
 public class Room {
-    private int roomNumber;
+    private String roomNumber;
     private RoomType type;
     private int capacity;
     private BigDecimal pricePerNight;
@@ -12,7 +12,7 @@ public class Room {
 
 
     //create the constructor
-    public Room(int roomNumber,RoomType type,int capacity,BigDecimal pricePerNight,RoomStatus status){
+    public Room(String roomNumber,RoomType type,int capacity,BigDecimal pricePerNight,RoomStatus status){
         this.roomNumber = roomNumber;
         this.type = type;
         this.capacity = capacity;
@@ -23,7 +23,7 @@ public class Room {
 
     //create the getters
 
-    public int getRoomNumber() {
+    public String getRoomNumber() {
         return roomNumber;
     }
 
@@ -61,7 +61,7 @@ public class Room {
         this.type = type;
     }
 
-    public void setRoomNumber(int roomNumber) {
+    public void setRoomNumber(String roomNumber) {
         this.roomNumber = roomNumber;
     }
 }
