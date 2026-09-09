@@ -8,9 +8,17 @@ C:\Users\Youcode\Documents\YouCode-journey\2 Annee\Sprint1\Brief1\src\main\java\
 C:\Users\Youcode\Documents\YouCode-journey\2 Annee\Sprint1\Brief1\src\main\java\com\hotel\model\RoomStatus.java
 C:\Users\Youcode\Documents\YouCode-journey\2 Annee\Sprint1\Brief1\src\main\java\com\hotel\model\RoomType.java
 C:\Users\Youcode\Documents\YouCode-journey\2 Annee\Sprint1\Brief1\src\main\java\com\hotel\model\User.java
+C:\Users\Youcode\Documents\YouCode-journey\2 Annee\Sprint1\Brief1\src\main\java\com\hotel\repository\impl\InMemoryReservationRepository.java
+C:\Users\Youcode\Documents\YouCode-journey\2 Annee\Sprint1\Brief1\src\main\java\com\hotel\repository\impl\InMemoryRoomRepository.java
 C:\Users\Youcode\Documents\YouCode-journey\2 Annee\Sprint1\Brief1\src\main\java\com\hotel\repository\impl\InMemoryUserRepository.java
+C:\Users\Youcode\Documents\YouCode-journey\2 Annee\Sprint1\Brief1\src\main\java\com\hotel\repository\impl\ReservationServiceImpl.java
+C:\Users\Youcode\Documents\YouCode-journey\2 Annee\Sprint1\Brief1\src\main\java\com\hotel\repository\impl\RoomServiceImpl.java
+C:\Users\Youcode\Documents\YouCode-journey\2 Annee\Sprint1\Brief1\src\main\java\com\hotel\repository\ReservationRepository.java
+C:\Users\Youcode\Documents\YouCode-journey\2 Annee\Sprint1\Brief1\src\main\java\com\hotel\repository\RoomRepository.java
 C:\Users\Youcode\Documents\YouCode-journey\2 Annee\Sprint1\Brief1\src\main\java\com\hotel\repository\UserRepository.java
 C:\Users\Youcode\Documents\YouCode-journey\2 Annee\Sprint1\Brief1\src\main\java\com\hotel\service\AuthService.java
+C:\Users\Youcode\Documents\YouCode-journey\2 Annee\Sprint1\Brief1\src\main\java\com\hotel\service\ReservationService.java
+C:\Users\Youcode\Documents\YouCode-journey\2 Annee\Sprint1\Brief1\src\main\java\com\hotel\service\RoomService.java
 C:\Users\Youcode\Documents\YouCode-journey\2 Annee\Sprint1\Brief1\src\main\java\com\hotel\util\DateUtils.java
 C:\Users\Youcode\Documents\YouCode-journey\2 Annee\Sprint1\Brief1\src\main\java\com\hotel\util\InputUtils.java
 C:\Users\Youcode\Documents\YouCode-journey\2 Annee\Sprint1\Brief1\src\main\java\com\hotel\util\ValidationUtils.java

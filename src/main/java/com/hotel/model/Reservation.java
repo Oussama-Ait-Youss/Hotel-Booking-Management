@@ -1,7 +1,7 @@
 package com.hotel.model;
-import java.util.UUID;
-import java.time.LocalDate;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.UUID;
 
 
 public class Reservation {
@@ -18,7 +18,7 @@ public class Reservation {
     private LocalDate createdAt;
 
     //create the constructor
-    public Reservation(UUID id,String reservationCode,UUID userId,int roomNumber,LocalDate checkIn,LocalDate checkOut,int numberOfGuests,int numberOfNights,BigDecimal totalPrice,ReservationStatus status,LocalDate createdAt){
+    public Reservation(UUID id,String reservationCode,UUID userId,String roomNumber,LocalDate checkIn,LocalDate checkOut,int numberOfGuests,int numberOfNights,BigDecimal totalPrice,ReservationStatus status,LocalDate createdAt){
         this.id = id;
         this.reservationCode = reservationCode;
         this.userId = userId;
@@ -78,6 +78,14 @@ public class Reservation {
     public LocalDate getCreatedAt() {
         return createdAt;
     }
+
+    public boolean overlapsWith(LocalDate requestedCheckIn, LocalDate requestedCheckOut) {
+        return requestedCheckIn != null
+                && requestedCheckOut != null
+                && requestedCheckIn.isBefore(checkOut)
+                && requestedCheckOut.isAfter(checkIn);
+    }
+
     //create the setters
 
     public void setId(UUID id) {
@@ -92,7 +100,7 @@ public class Reservation {
         this.userId = userId;
     }
 
-    public void setRoomNumber(int roomNumber) {
+    public void setRoomNumber(String roomNumber) {
         this.roomNumber = roomNumber;
     }
 
