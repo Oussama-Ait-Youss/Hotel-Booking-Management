@@ -8,7 +8,7 @@ public class Reservation {
     private UUID id;
     private String reservationCode;
     private UUID userId;
-    private int roomNumber;
+    private String roomNumber;
     private LocalDate checkIn;
     private LocalDate checkOut;
     private int numberOfGuests;
@@ -47,7 +47,7 @@ public class Reservation {
         return userId;
     }
 
-    public int getRoomNumber() {
+    public String getRoomNumber() {
         return roomNumber;
     }
 
