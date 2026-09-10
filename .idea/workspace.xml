@@ -5,37 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae2b1dc8-eeb6-4e6c-8681-067c455afe3a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hotel/repository/impl/ReservationServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hotel/repository/impl/RoomServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hotel/service/ReservationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/hotel/service/RoomService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Brief1.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/model/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/model/Reservation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/repository/ReservationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/repository/ReservationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/exception/BusinessException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/exception/EmailAlreadyExistsException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/exception/InvalidCredentialsException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/model/Reservation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/model/ReservationStatus.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/model/Room.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/model/RoomStatus.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/model/RoomType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/model/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/repository/UserRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/repository/impl/InMemoryUserRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/service/AuthService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/util/DateUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/util/InputUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/util/ValidationUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/service/AuthService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +20,65 @@
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="2.256484036794473" />
+      <entry key="MS500" value="4.026594583522556" />
+      <entry key="S2" value="4.721370269217326" />
+      <entry key="S5" value="4.885379715428229" />
+      <entry key="S10" value="4.9743962177359595" />
+      <entry key="S30" value="8.854384503957222" />
+      <entry key="S60" value="20.640017583482912" />
+      <entry key="M2" value="42.697644255299586" />
+      <entry key="M5" value="82.76059766807532" />
+      <entry key="M10" value="110.88161987405051" />
+      <entry key="M15" value="123.53241012762385" />
+      <entry key="M30" value="138.4120558910208" />
+      <entry key="H1" value="146.8334384784496" />
+      <entry key="H2" value="151.318913660711" />
+      <entry key="H4" value="153.63439597222376" />
+      <entry key="D1" value="155.60219894024598" />
+      <entry key="W1" value="155.94308403626655" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="3.784222811027591E-306" />
+      <entry key="MS500" value="8.23370570085698E-62" />
+      <entry key="S2" value="5.35671862984048E-16" />
+      <entry key="S5" value="7.790400921249236E-7" />
+      <entry key="S10" value="8.833551424931963E-4" />
+      <entry key="S30" value="0.10759053104386827" />
+      <entry key="S60" value="0.45819112207678064" />
+      <entry key="M2" value="1.1318212439872712" />
+      <entry key="M5" value="2.2419542096108507" />
+      <entry key="M10" value="2.9458945863555117" />
+      <entry key="M15" value="3.2491418344837335" />
+      <entry key="M30" value="3.597605756273848" />
+      <entry key="H1" value="3.7914469200531165" />
+      <entry key="H2" value="3.8938007769905187" />
+      <entry key="H4" value="3.9464087929395717" />
+      <entry key="D1" value="3.9909989053181216" />
+      <entry key="W1" value="3.9987124214423284" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="2.133319487484867" />
+      <entry key="MS500" value="3.9792273363357724" />
+      <entry key="S2" value="4.707342217857385" />
+      <entry key="S5" value="4.879563266919336" />
+      <entry key="S10" value="4.972294159430439" />
+      <entry key="S30" value="8.95927482632474" />
+      <entry key="S60" value="21.09395506584303" />
+      <entry key="M2" value="43.824265509416925" />
+      <entry key="M5" value="84.99802438022927" />
+      <entry key="M10" value="113.82435767827944" />
+      <entry key="M15" value="126.77917666781906" />
+      <entry key="M30" value="142.00831398111345" />
+      <entry key="H1" value="150.62416613428488" />
+      <entry key="H2" value="155.21234268812515" />
+      <entry key="H4" value="157.58061576044548" />
+      <entry key="D1" value="159.59316590125604" />
+      <entry key="W1" value="159.94179188325802" />
+    </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1,
@@ -66,8 +97,10 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "feature/reservation-repository",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "feature/room-reservation-services",
     "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Youcode/Documents/YouCode-journey/2 Annee/Sprint1/Brief1",
     "node.js.detected.package.eslint": "true",
@@ -77,7 +110,8 @@
     "node.js.selected.package.jshint": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "ml.llm.AcpAgentsConfigurable"
+    "settings.editor.selected.configurable": "ml.llm.AcpAgentsConfigurable",
+    "to.speed.mode.migration.done": "true"
   }
 }]]></component>
   <component name="RecentsManager">
