@@ -5,6 +5,7 @@ import com.hotel.exception.InvalidCredentialsException;
 import com.hotel.model.User;
 import com.hotel.repository.UserRepository;
 import com.hotel.util.ValidationUtils;
+import com.hotel.exception.BusinessException;
 
 import java.util.UUID;
 
@@ -53,6 +54,53 @@ public class AuthService {
 
         this.currentUser = user;
         return user;
+    }
+    //update profile
+    // Dans AuthService.java (ou UserService)
+
+    public void updateProfile(UUID userId, String newName, String newEmail, String newPhone) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new BusinessException("Utilisateur introuvable."));
+
+        ValidationUtils.validateNotBlank(newName, "Full name");
+        ValidationUtils.validateNotBlank(newEmail, "Email");
+        ValidationUtils.validateEmail(newEmail);
+
+        String trimmedEmail = newEmail.trim().toLowerCase();
+
+        // L'email doit être unique sauf s'il appartient déjà à cet utilisateur
+        if (!trimmedEmail.equalsIgnoreCase(user.getEmail()) && userRepository.existsByEmail(trimmedEmail)) {
+            throw new EmailAlreadyExistsException("Cet email est déjà utilisé par un autre compte.");
+        }
+
+        user.setFullName(newName.trim());
+        user.setEmail(trimmedEmail);
+        user.setPhone(newPhone != null ? newPhone.trim() : "");
+
+        userRepository.save(user);
+
+        // Maintient l'état de la session active synchronisé
+        if (this.currentUser != null) {
+            this.currentUser = user;
+        }
+    }
+
+    public void changePassword(UUID userId, String oldPassword, String newPassword) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new BusinessException("Utilisateur introuvable."));
+
+        if (!user.getPassword().equals(oldPassword)) {
+            throw new BusinessException("L'ancien mot de passe est incorrect.");
+        }
+
+        ValidationUtils.validatePassword(newPassword);
+
+        user.setPassword(newPassword.trim());
+        userRepository.save(user);
+
+        if (this.currentUser != null) {
+            this.currentUser.setPassword(newPassword.trim());
+        }
     }
 
     public void logout() {

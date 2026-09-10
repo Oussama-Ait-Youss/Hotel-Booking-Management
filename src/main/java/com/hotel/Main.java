@@ -114,38 +114,89 @@ public class Main {
         User user = authService.login(email, password);
         System.out.println(" Welcome back, " + user.getFullName() + "!\n");
     }
+    private static void handleViewProfile(AuthService authService) {
+        User user = authService.getCurrentUser();
+        System.out.println("\n--- Mon Profil ---");
+        System.out.println("Nom complet   : " + user.getFullName());
+        System.out.println("Email         : " + user.getEmail());
+        System.out.println("Telephone     : " + user.getPhone());
+        System.out.println();
+    }
+
+    private static void handleUpdateProfile(Scanner scanner, AuthService authService) {
+        User user = authService.getCurrentUser();
+        System.out.println("\n--- Modifier mon Profil ---");
+        System.out.println("(Laissez vide et appuyez sur Entrée pour conserver la valeur actuelle)");
+
+        String newName = InputUtils.readString(scanner, "Nouveau nom [" + user.getFullName() + "] : ");
+        if (newName.isBlank()) {
+            newName = user.getFullName();
+        }
+
+        String newEmail = InputUtils.readString(scanner, "Nouvel email [" + user.getEmail() + "] : ");
+        if (newEmail.isBlank()) {
+            newEmail = user.getEmail();
+        }
+
+        String newPhone = InputUtils.readString(scanner, "Nouveau telephone [" + user.getPhone() + "] : ");
+        if (newPhone.isBlank()) {
+            newPhone = user.getPhone();
+        }
+
+        // Appel au service (utilisez user.getId() ou user.getUUID() selon votre modèle User)
+        authService.updateProfile(user.getUUID(), newName, newEmail, newPhone);
+        System.out.println(" Profil mis a jour avec succes !\n");
+    }
+
+    private static void handleChangePassword(Scanner scanner, AuthService authService) {
+        User user = authService.getCurrentUser();
+        System.out.println("\n--- Changer mon Mot de Passe ---");
+
+        String oldPassword = InputUtils.readString(scanner, "Ancien mot de passe : ");
+        String newPassword = InputUtils.readString(scanner, "Nouveau mot de passe (min 6 caractères) : ");
+
+        // Appel au service (utilisez user.getId() ou user.getUUID() selon votre modèle User)
+        authService.changePassword(user.getUUID(), oldPassword, newPassword);
+        System.out.println(" Mot de passe modifie avec succes !\n");
+    }
 
     private static void showAuthenticatedMenu(Scanner scanner, AuthService authService,
                                               RoomService roomService, ReservationService reservationService) {
         User user = authService.getCurrentUser();
         System.out.println("================================");
-        System.out.println("Logged in as: " + user.getFullName() + " (" + user.getEmail() + ")");
+        System.out.println("Connecte en tant que: " + user.getFullName() + " (" + user.getEmail() + ")");
         System.out.println("================================");
-        System.out.println("1. View all rooms");
-        System.out.println("2. Search available rooms");
-        System.out.println("3. Book a room");
-        System.out.println("4. My reservations");
-        System.out.println("5. Cancel a reservation");
-        System.out.println("9. Logout");
-        System.out.println("0. Exit");
+        System.out.println("1. Mon profil");
+        System.out.println("2. Modifier mon profil");
+        System.out.println("3. Changer mon mot de passe");
+        System.out.println("4. Consulter toutes les chambres");
+        System.out.println("5. Rechercher des chambres disponibles");
+        System.out.println("6. Reserver une chambre");
+        System.out.println("7. Mes reservations");
+        System.out.println("8. Annuler une reservation");
+        System.out.println("9. Deconnexion");
+        System.out.println("0. Quitter");
 
-        int choice = InputUtils.readInt(scanner, "Choice: ");
+        int choice = InputUtils.readInt(scanner, "Choix: ");
 
         switch (choice) {
-            case 1 -> handleViewAllRooms(roomService);
-            case 2 -> handleSearchRooms(scanner, roomService);
-            case 3 -> handleCreateReservation(scanner, user, reservationService);
-            case 4 -> handleViewMyReservations(user, reservationService);
-            case 5 -> handleCancelReservation(scanner, user, reservationService);
+            case 1 -> handleViewProfile(authService);
+            case 2 -> handleUpdateProfile(scanner, authService);
+            case 3 -> handleChangePassword(scanner, authService);
+            case 4 -> handleViewAllRooms(roomService);
+            case 5 -> handleSearchRooms(scanner, roomService);
+            case 6 -> handleCreateReservation(scanner, user, reservationService);
+            case 7 -> handleViewMyReservations(user, reservationService);
+            case 8 -> handleCancelReservation(scanner, user, reservationService);
             case 9 -> {
                 authService.logout();
-                System.out.println(" You have been logged out.\n");
+                System.out.println(" Deconnexion reussie.\n");
             }
             case 0 -> {
-                System.out.println("Goodbye!");
+                System.out.println("Au revoir !");
                 System.exit(0);
             }
-            default -> System.out.println("Invalid option.\n");
+            default -> System.out.println("Option invalide.\n");
         }
     }
 
