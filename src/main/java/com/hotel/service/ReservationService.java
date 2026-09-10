@@ -20,4 +20,6 @@ public interface ReservationService {
     List<Reservation> getReservationsByUserId(UUID userId);
 
     List<Reservation> getAllReservations();
+    Reservation modifyReservation(UUID reservationId, UUID userId, String newRoomNumber,
+                                  LocalDate newCheckIn, LocalDate newCheckOut, int guests);
 }
