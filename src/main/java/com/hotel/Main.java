@@ -11,6 +11,7 @@ import com.hotel.exception.BusinessException;
 import com.hotel.model.Reservation;
 import com.hotel.model.Room;
 import com.hotel.model.RoomStatus;
+import com.hotel.model.ReservationStatus;
 import com.hotel.model.RoomType;
 import com.hotel.model.User;
 import com.hotel.repository.ReservationRepository;
@@ -153,7 +154,7 @@ public class Main {
         System.out.println("\n--- Changer mon Mot de Passe ---");
 
         String oldPassword = InputUtils.readString(scanner, "Ancien mot de passe : ");
-        String newPassword = InputUtils.readString(scanner, "Nouveau mot de passe (min 6 caractères) : ");
+        String newPassword = InputUtils.readString(scanner, "Nouveau mot de passe (min 6 caracteres) : ");
 
         // Appel au service (utilisez user.getId() ou user.getUUID() selon votre modèle User)
         authService.changePassword(user.getUUID(), oldPassword, newPassword);
@@ -173,8 +174,9 @@ public class Main {
         System.out.println("5. Rechercher des chambres disponibles");
         System.out.println("6. Reserver une chambre");
         System.out.println("7. Mes reservations");
-        System.out.println("8. Annuler une reservation");
-        System.out.println("9. Deconnexion");
+        System.out.println("8. Modifier une reservation");
+        System.out.println("9. Annuler une reservation");
+        System.out.println("10. Deconnexion");
         System.out.println("0. Quitter");
 
         int choice = InputUtils.readInt(scanner, "Choix: ");
@@ -187,10 +189,11 @@ public class Main {
             case 5 -> handleSearchRooms(scanner, roomService);
             case 6 -> handleCreateReservation(scanner, user, reservationService);
             case 7 -> handleViewMyReservations(user, reservationService);
-            case 8 -> handleCancelReservation(scanner, user, reservationService);
-            case 9 -> {
+            case 8 -> handleModifyReservation(scanner, user, reservationService);
+            case 9 -> handleCancelReservation(scanner, user, reservationService);
+            case 10 -> {
                 authService.logout();
-                System.out.println(" Deconnexion reussie.\n");
+                System.out.println(" Déconnexion réussie.\n");
             }
             case 0 -> {
                 System.out.println("Au revoir !");
@@ -279,6 +282,45 @@ public class Main {
         }
     }
 
+    private static void handleModifyReservation(Scanner scanner, User user, ReservationService reservationService) {
+        System.out.println("\n--- Modifier une Reservation ---");
+        String code = InputUtils.readString(scanner, "Code de la reservation (ex: RES-XXXX): ");
+
+        Reservation reservation = reservationService.getReservationByCode(code)
+                .orElseThrow(() -> new BusinessException("Reservation introuvable pour le code: " + code));
+
+        // Vérification de sécurité locale
+        if (!reservation.getUserId().equals(user.getUUID())) { // ou user.getId() selon votre User
+            throw new BusinessException("Vous n etes pas autorise a modifier cette reservation.");
+        }
+
+        if (reservation.getStatus() == ReservationStatus.CANCELLED) {
+            throw new BusinessException("Impossible de modifier une reservation annulee.");
+        }
+
+        System.out.printf("Reservation actuelle : Chambre %s | Du %s au %s | Total: %s%n",
+                reservation.getRoomNumber(), reservation.getCheckIn(), reservation.getCheckOut(), reservation.getTotalPrice());
+        System.out.println("(Laissez vide pour conserver la chambre actuelle)");
+
+        String newRoom = InputUtils.readString(scanner, "Nouvelle chambre [" + reservation.getRoomNumber() + "] : ");
+        LocalDate newCheckIn = readValidDate(scanner, "Nouvelle date d arrivee (yyyy-MM-dd) : ");
+        LocalDate newCheckOut = readValidDate(scanner, "Nouvelle date de depart (yyyy-MM-dd) : ");
+        int guests = InputUtils.readInt(scanner, "Nombre d'occupants prevus : ");
+
+        Reservation updated = reservationService.modifyReservation(
+                reservation.getId(),
+                user.getUUID(), // ou user.getId()
+                newRoom.isBlank() ? null : newRoom,
+                newCheckIn,
+                newCheckOut,
+                guests
+        );
+
+        System.out.println(" Reservation mise a jour avec succes !");
+        System.out.printf("Code: %s | Chambre: %s | Du %s au %s | Nouveau total: %s%n%n",
+                updated.getReservationCode(), updated.getRoomNumber(),
+                updated.getCheckIn(), updated.getCheckOut(), updated.getTotalPrice() + "DH");
+    }
     private static LocalDate readValidDate(Scanner scanner, String prompt) {
         while (true) {
             String input = InputUtils.readString(scanner, prompt);

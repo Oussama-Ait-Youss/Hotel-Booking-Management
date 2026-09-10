@@ -120,4 +120,69 @@ public class ReservationServiceImpl implements ReservationService {
     public List<Reservation> getAllReservations() {
         return reservationRepository.findAll();
     }
+    @Override
+    public Reservation modifyReservation(UUID reservationId, UUID userId, String newRoomNumber,
+                                         LocalDate newCheckIn, LocalDate newCheckOut, int guests) {
+        if (reservationId == null || userId == null || newCheckIn == null || newCheckOut == null) {
+            throw new IllegalArgumentException("Paramètres de modification invalides.");
+        }
+
+        Reservation reservation = reservationRepository.findById(reservationId)
+                .orElseThrow(() -> new IllegalArgumentException("Réservation introuvable."));
+
+        // 1. Contrôle d'autorisation
+        if (!reservation.getUserId().equals(userId)) {
+            throw new IllegalStateException("Vous n'êtes pas autorisé à modifier cette réservation.");
+        }
+
+        // 2. Contrôle du statut
+        if (reservation.getStatus() == ReservationStatus.CANCELLED) {
+            throw new IllegalStateException("Impossible de modifier une réservation déjà annulée.");
+        }
+
+        // 3. Validation des dates
+        if (newCheckIn.isBefore(LocalDate.now())) {
+            throw new IllegalArgumentException("La date de check-in ne peut pas être dans le passé.");
+        }
+        if (!newCheckOut.isAfter(newCheckIn)) {
+            throw new IllegalArgumentException("La date de check-out doit être strictement postérieure au check-in.");
+        }
+
+        // 4. Chambre ciblée (conserve l'actuelle si non spécifiée)
+        String targetRoom = (newRoomNumber != null && !newRoomNumber.isBlank())
+                ? newRoomNumber.trim()
+                : reservation.getRoomNumber();
+
+        Room room = roomService.getRoomByNumber(targetRoom)
+                .orElseThrow(() -> new IllegalArgumentException("Chambre introuvable : " + targetRoom));
+
+        // 5. Capacité requise
+        if (guests > 0 && room.getCapacity() < guests) {
+            throw new IllegalStateException("La chambre " + targetRoom + " ne peut pas accueillir " + guests + " personnes.");
+        }
+
+        // 6. Vérification de disponibilité anti-surbooking (sans auto-collision)
+        boolean hasConflict = reservationRepository.findByRoomNumber(targetRoom).stream()
+                .filter(r -> !r.getId().equals(reservationId)) // Exclure la réservation elle-même
+                .filter(r -> r.getStatus() != ReservationStatus.CANCELLED) // Ignorer les annulées
+                .anyMatch(r -> r.overlapsWith(newCheckIn, newCheckOut));
+
+        if (hasConflict) {
+            throw new IllegalStateException("La chambre " + targetRoom + " n'est pas disponible pour ces dates.");
+        }
+
+        // 7. Recalcul des nuits et du montant total
+        long nights = ChronoUnit.DAYS.between(newCheckIn, newCheckOut);
+        BigDecimal newTotalPrice = room.getPricePerNight().multiply(BigDecimal.valueOf(nights));
+
+        // 8. Application des modifications
+        reservation.setRoomNumber(targetRoom);
+        reservation.setCheckIn(newCheckIn);
+        reservation.setCheckOut(newCheckOut);
+        reservation.setNumberOfNights(Math.toIntExact(nights)); // ou le setter correspondant
+        reservation.setTotalPrice(newTotalPrice);
+
+        reservationRepository.save(reservation);
+        return reservation;
+    }
 }
